@@ -30,6 +30,20 @@ class TemaAltoContraste implements Tema {
 // Fábrica abstrata (Factory Method)
 abstract class FabricaDeTemas {
   public abstract Tema criarTema(); // Método Factory
+
+  // Método estático para escolher a fábrica dinamicamente
+  public static FabricaDeTemas obterFabrica(String tipo) {
+    switch (tipo.toLowerCase()) {
+      case "claro":
+        return new FabricaTemaClaro();
+      case "escuro":
+        return new FabricaTemaEscuro();
+      case "alto-contraste":
+        return new FabricaTemaAltoContraste();
+      default:
+        throw new IllegalArgumentException("Tema não suportado.");
+    }
+  }
 }
 
 // Fábricas concretas para cada tipo de tema
